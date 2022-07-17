@@ -414,12 +414,10 @@ let a = prompt("Введите данные для поиска", "");
 
 let serchArr = data.filter((item) => item.spacecraft.includes(a));
 
-
 if (serchArr.length != 0) {
   Object.values(serchArr).forEach((value) => {
-      console.log(value.spacecraft);
-    });
+    console.log(value.spacecraft);
+  });
 } else {
   alert("data not found");
 }
-
