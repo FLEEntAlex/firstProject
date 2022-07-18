@@ -292,3 +292,74 @@ function transferWaitors(data) {
 }
 
 transferWaitors(restorantData);*/
+
+/*RECURSION==============================================================================*/
+
+/*!!!!!!!!!!1============================================================================*/
+/*let students = {
+  js: [
+    { name: `John`, progress: 100 },
+    { name: `Ivan`, progress: 60 },
+  ],
+
+  html: {
+    basic: [
+      {
+        name: `Peter`,
+        progress: 20,
+      },
+      { name: "Ann", progress: 18 },
+    ],
+    pro: [
+      {
+        name: `Sam`,
+        progress: 10,
+      },
+    ],
+  },
+};
+
+const getTotalByRecursion = (data) => {
+  //сначала проверяем может у нас сразу массив объектов, тогда начинаем проганять сразу
+  if (Array.isArray(data)) {
+    let total = 0;
+    for (let i = 0; i < data.length; i++) {
+      total += data[i].progress;
+    }
+    return [total, data.length]; // т.к у нас возвращается 2 значения (кол-во студентов и средний прогресс), ретурн сделали массивом из 2х эллементов.
+
+    // если сразу не встретили массив, начинаем с помощью Object.values искать его
+  } else {
+    let total = [0, 0]; //вводим переменную массив для возврата с ее помощью 2х результатов (кол-во студентов и средний прогресс).
+    for (let subData of Object.values(data)) {
+      const subDataArr = getTotalByRecursion(subData); // запускаем рекурсию, при нахождении массива объектов стартует наша функция с началом if (Array.isArray(data))
+      total[0] += subDataArr[0]; //1-му элементу присваиваем значение тотала
+      total[1] += subDataArr[1]; //2-му элементу присваиваем значение кол-ва студентов т.е длины массива
+    }
+    return total;
+  }
+};
+
+const res = getTotalByRecursion(students);
+console.log(res[0] / res[1]); // так как результат у нас это массиы в консоль выводим деление первого элемента на второй, это и будет ответ на задачу.*/
+
+/*2 FACTORIAL===============================================================================================================================
+
+function factorial(number) {
+  if (typeof number != "number" || !Number.isInteger(number)) {
+    return `введено дробное число или не число вовсе`;
+  } else if (number <= 0) {
+    return 1;
+  } else {
+    let res = 1;
+    if (number === 1) {
+      return res;
+    } else {
+      res = number * factorial(number - 1);
+      number--;
+      return res;
+    }
+  }
+}
+
+console.log(factorial(3));*/
