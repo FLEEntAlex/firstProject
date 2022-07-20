@@ -362,4 +362,78 @@ function factorial(number) {
   }
 }
 
-console.log(factorial(3));*/
+console.log(factorial(4));*/
+
+/* exercises /1/ after 61's lesson======================================================================================================================*/
+
+/*function amountOfPages(summary) {
+  let res = "";
+  let page;
+  for (let i = 1; i <= summary; i++) {
+    res += i;
+  }
+  if (summary <= 9) {
+    page = res.slice(summary - 1, summary);
+  } else if (summary < 190) {
+    page = res.slice(summary - 2, summary);
+  } else if (summary < 2890) {
+    page = res.slice(summary - 3, summary);
+  } else if (summary < 38890) {
+    page = res.slice(summary - 4, summary);
+  } else if (summary < 488890) {
+    page = res.slice(summary - 5, summary);
+  }
+
+  //console.log(res);
+  //console.log(res.length);
+  return parseInt(page);
+}
+
+function amountOfPages1(summary) {
+  let result = "";
+  let n = 0;
+
+  for (let i = 1; i <= summary; i++) {
+    result += i;
+    if (result.length === summary) {
+      n = i;
+      break;
+    }
+  }
+
+  return n;
+}
+console.log(amountOfPages(28));
+console.log(amountOfPages1(28));*/
+
+/* exercises /2/ (Pangram) after 61's lesson======================================================================================================================*/
+
+/*function isPangram(string) {
+  let res = true;
+  let alph = "abcdefghijklmnopqrstuvwxyz";
+  for (let i = 0; i < alph.length; i++) {
+    if (string.toLowerCase().indexOf(alph[i]) === -1) {
+      res = false;
+      break;
+    }
+  }
+  return res;
+}
+
+console.log(isPangram("the Quick broWn fox jumps ovEr the lazY dog"));
+console.log(isPangram("Hello world"));
+console.log(isPangram("nopqrsTuvwxyZabcdeFghijklm"));*/
+
+/* exercises /3/ Deep count after 61's lesson======================================================================================================================*/
+
+function deepCount(a) {
+  let count = a.length;
+  a.forEach((el) => {
+    if (Array.isArray(el)) {
+      count += deepCount(el);
+    }
+  });
+  return count;
+}
+
+console.log(deepCount([[[[[[[[[]]]]]]]]]));

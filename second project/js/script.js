@@ -86,13 +86,12 @@ document.addEventListener("DOMContentLoaded", () => {
         newFilm = `${newFilm.substring(0, 21)}...`; //
       }
       if (favorite) {
-        console.log("Добавляем любимый фильм");
+        console.log("Вы добавили любимый фильм");
       }
       movieDB.movies.push(newFilm); //пушим новый фильм в массив
       createList(chgList, movieDB.movies); // пересоздаем отсортированный массив
-      //event.target.reset(); //очищаем форму
     }
-    event.target.reset(); //очищаем форму если ввели пробелы
+    event.target.reset(); //очищаем форму после ввода
   });
 
   removeAdv(adBlock);
