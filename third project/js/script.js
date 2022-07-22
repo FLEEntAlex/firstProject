@@ -38,22 +38,16 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
   /*TIMER==================================================================================================*/
-  const judgmentDay = "2021-08-24";
+  const judgmentDay = Date.parse(new Date()) + 100000000;
 
   const getTimeRemeaning = (endTime) => {
-    const t = Date.parse(endTime) - Date.parse(new Date()),
+    const t = endTime - Date.parse(new Date()),
       days = Math.floor(t / (1000 * 60 * 60 * 24)),
       hours = Math.floor((t / 1000 / 60 / 60) % 24),
       minutes = Math.floor((t / 1000 / 60) % 60),
       seconds = Math.floor((t / 1000) % 60);
 
-    return {
-      t: t,
-      days: days,
-      hours: hours,
-      minutes: minutes,
-      seconds: seconds,
-    };
+    return { t, days, hours, minutes, seconds };
   };
 
   const setTimer = (timer, endTime) => {
@@ -67,7 +61,7 @@ window.addEventListener("DOMContentLoaded", () => {
     updateTimer();
 
     function getZero(param) {
-      if (param > 0 && param < 10) {
+      if (param >= 0 && param < 10) {
         return (param = "0" + param);
       } else {
         return param;
@@ -84,14 +78,60 @@ window.addEventListener("DOMContentLoaded", () => {
 
       if (t.t <= 0) {
         clearInterval(timeInterval);
-        days.innerHTML = getZero("00");
-        hours.innerHTML = getZero("00");
-        minutes.innerHTML = getZero("00");
-        seconds.innerHTML = getZero("00");
+        days.innerHTML = getZero("0");
+        hours.innerHTML = getZero("0");
+        minutes.innerHTML = getZero("0");
+        seconds.innerHTML = getZero("0");
         const freebie = document.querySelector("#freebie");
         freebie.innerHTML = "ХАЛЯВА ЗАКОНЧИЛАСЬ:";
       }
     }
   };
   setTimer(".timer", judgmentDay);
+
+  /*Modal Window======================================================================================================*/
+
+  const openModalWindow = document.querySelectorAll("[data-modal]"),
+    modal = document.querySelector(".modal"),
+    closeModalWindow = document.querySelector("[data-close]");
+
+  function openModal() {
+    modal.classList.remove("hide");
+    modal.classList.add("show");
+    document.body.style.overflow = "hidden";
+    clearInterval(modalTimerId);
+  }
+  openModalWindow.forEach((el) => {
+    el.addEventListener("click", openModal);
+  });
+  function closeModal() {
+    modal.classList.add("hide");
+    modal.classList.remove("show");
+    document.body.style.overflow = "";
+  }
+  closeModalWindow.addEventListener("click", closeModal);
+
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.code === "Escape" && modal.classList.contains("show")) {
+      closeModal();
+    }
+  });
+  const modalTimerId = setTimeout(openModal, 5000);
+
+  function showModalByScroll() {
+    if (
+      window.pageYOffset + document.documentElement.clientHeight >= // складываем высоту скрола которую уже прошли + высоту клиентского экрана
+      document.documentElement.scrollHeight // а сравниваем с общей высотой скрола всего документаб так мы поймем дошли до конца страницы или нет?
+    ) {
+      openModal();
+      window.removeEventListener("scroll", showModalByScroll); //удаляем обработчик событий сразу поле открытия, чтобы окно открывалось только при первом скроле до конца.
+    }
+  }
+
+  window.addEventListener("scroll", showModalByScroll);
 });

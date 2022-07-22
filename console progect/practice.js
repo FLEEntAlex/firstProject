@@ -426,7 +426,7 @@ console.log(isPangram("nopqrsTuvwxyZabcdeFghijklm"));*/
 
 /* exercises /3/ Deep count after 61's lesson======================================================================================================================*/
 
-function deepCount(a) {
+/* function deepCount(a) {
   let count = a.length;
   a.forEach((el) => {
     if (Array.isArray(el)) {
@@ -436,4 +436,4 @@ function deepCount(a) {
   return count;
 }
 
-console.log(deepCount([[[[[[[[[]]]]]]]]]));
+console.log(deepCount([[[[[[[[[]]]]]]]]])); */
